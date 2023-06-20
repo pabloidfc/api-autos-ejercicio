@@ -7,6 +7,10 @@ use App\Models\Auto;
 
 class AutoController extends Controller
 {
+    public function Listar(Request $request) {
+        return Auto::all();
+    }
+
     public function Insertar(Request $request) {
         $auto = new Auto;
         $auto -> marca        = $request -> post("marca");

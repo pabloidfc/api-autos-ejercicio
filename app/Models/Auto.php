@@ -11,6 +11,6 @@ class Auto extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "autos";
+    protected $table = "auto";
     public $timestamps = false;
 }

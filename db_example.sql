@@ -8,8 +8,8 @@ create table auto(
     modelo varchar(30) not null,
     color varchar(10) not null,
     puertas tinyint not null,
-    cilindrado bool default false,
-    automatico bool default false,
-    electrico bool default false,
+    cilindrado bool,
+    automatico bool,
+    electrico bool,
     deleted_at timestamp null default null
 );
