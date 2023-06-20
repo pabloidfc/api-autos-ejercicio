@@ -104,4 +104,30 @@ class AutoTest extends TestCase
             "electrico" => 0
         ]);
     }
+
+    public function test_Insertar() {
+        $response = $this -> post('/api/autos/',
+        [ 
+            "marca" => "Toyota",
+            "modelo" => "V-15",
+            "color" => "Azul",
+            "puertas" => 2,
+            "cilindrado" => 0,
+            "automatico" => 1,
+            "electrico" => 0
+        ]);
+
+        $response -> assertStatus(201);
+        $response -> assertJsonCount(7);
+        $this -> assertDatabaseHas('auto', [
+            "marca" => "Toyota",
+            "modelo" => "V-15",
+            "color" => "Azul",
+            "puertas" => 2,
+            "cilindrado" => 0,
+            "automatico" => 1,
+            "electrico" => 0
+        ]);
+
+    }
 }
