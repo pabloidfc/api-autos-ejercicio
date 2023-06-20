@@ -43,4 +43,24 @@ class AutoTest extends TestCase
         $response = $this -> get('/api/autos/501');
         $response -> assertStatus(404);
     }
+
+    public function test_EliminarUnoQueExista() {
+        $response = $this -> delete('/api/autos/502');
+        $response -> assertStatus(200);
+        $response -> assertJsonFragment([
+             "msj" => "Auto código 502 eliminada."
+        ]);
+
+        $this -> assertDatabaseMissing('auto', [
+            'id' => '502',
+            'deleted_at' => null
+        ]);
+
+        Auto::withTrashed() -> where("id",502) -> restore();
+    }
+
+    public function test_EliminarUnoQueNoExista() {
+        $response = $this -> delete('/api/autos/503');
+        $response -> assertStatus(404);
+    }
 }
