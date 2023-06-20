@@ -11,7 +11,7 @@ class AutoController extends Controller
         return Auto::all();
     }
 
-    public function ListarUno(Request $request, $idAuto){
+    public function ListarUno(Request $request, $idAuto) {
         return Auto::findOrFail($idAuto);
 
     }
@@ -30,14 +30,14 @@ class AutoController extends Controller
         return $auto;
     }
 
-    public function Eliminar(Request $request, $idAuto){
+    public function Eliminar(Request $request, $idAuto) {
         $auto = Auto::findOrFail($idAuto);
         $auto -> delete();
 
         return [ "msj" => "Auto código $idAuto eliminado."];
     }
 
-    public function Modificar(Request $request, $idAuto){
+    public function Modificar(Request $request, $idAuto) {
         $auto = Auto::findOrFail($idAuto);
         $auto -> marca        = $request -> post("marca");
         $auto -> modelo       = $request -> post("modelo");

@@ -18,4 +18,29 @@ class AutoTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_ListarUnoQueExista() {
+        $estructura = [
+            "id",
+            "marca",
+            "modelo",
+            "color",
+            "puertas",
+            "cilindrado",
+            "automatico",
+            "electrico",
+            "deleted_at"
+        ];
+
+        $response = $this -> get('/api/autos/500');
+
+        $response -> assertStatus(200);
+        $response -> assertJsonCount(9);
+        $response -> assertJsonStructure($estructura);
+    }
+
+    public function test_ListarUnoQueNoExista() {
+        $response = $this -> get('/api/autos/501');
+        $response -> assertStatus(404);
+    }
 }
