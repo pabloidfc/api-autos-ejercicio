@@ -11,6 +11,11 @@ class AutoController extends Controller
         return Auto::all();
     }
 
+    public function ListarUno(Request $request, $idAuto){
+        return Auto::findOrFail($idAuto);
+
+    }
+
     public function Insertar(Request $request) {
         $auto = new Auto;
         $auto -> marca        = $request -> post("marca");
@@ -41,7 +46,7 @@ class AutoController extends Controller
         $auto -> cilindrado   = $request -> post("cilindrado");
         $auto -> automatico   = $request -> post("automatico");
         $auto -> electrico    = $request -> post("electrico");
-        
+
         $auto -> save();
         return $auto;
 

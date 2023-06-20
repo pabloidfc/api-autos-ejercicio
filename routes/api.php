@@ -21,8 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get("/autos", [AutoController::class, "Listar"]);
 
+Route::get("/autos/{d}", [AutoController::class, "ListarUno"]);
+
 Route::post("/autos", [AutoController::class, "Insertar"]);
 
 Route::delete("/autos/{d}", [AutoController::class, "Eliminar"]);
 
-Route::put("/autos/{d}", [PersonaController::class, "Modificar"]);
+Route::put("/autos/{d}", [AutoController::class, "Modificar"]);
