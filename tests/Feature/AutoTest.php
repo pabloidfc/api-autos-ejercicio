@@ -63,4 +63,45 @@ class AutoTest extends TestCase
         $response = $this -> delete('/api/autos/503');
         $response -> assertStatus(404);
     }
+
+    public function test_ModificarUnoQueNoExista() {
+        $response = $this -> put('/api/autos/503');
+        $response -> assertStatus(404);
+    }
+
+    public function test_ModificarUnoQueExista() {
+        $estructura = [
+            "id",
+            "marca",
+            "modelo",
+            "color",
+            "puertas",
+            "cilindrado",
+            "automatico",
+            "electrico",
+            "deleted_at"
+        ];
+
+        $response = $this -> put('/api/autos/500',[
+            "marca" => "Toyota",
+            "modelo" => "V-15",
+            "color" => "Azul",
+            "puertas" => 2,
+            "cilindrado" => 0,
+            "automatico" => 1,
+            "electrico" => 0
+        ]);
+
+        $response -> assertStatus(200);
+        $response -> assertJsonStructure($estructura);
+        $response -> assertJsonFragment([
+            "marca" => "Toyota",
+            "modelo" => "V-15",
+            "color" => "Azul",
+            "puertas" => 2,
+            "cilindrado" => 0,
+            "automatico" => 1,
+            "electrico" => 0
+        ]);
+    }
 }
