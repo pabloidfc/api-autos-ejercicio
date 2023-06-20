@@ -24,3 +24,5 @@ Route::get("/autos", [AutoController::class, "Listar"]);
 Route::post("/autos", [AutoController::class, "Insertar"]);
 
 Route::delete("/autos/{d}", [AutoController::class, "Eliminar"]);
+
+Route::put("/autos/{d}", [PersonaController::class, "Modificar"]);

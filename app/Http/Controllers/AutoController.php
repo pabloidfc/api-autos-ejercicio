@@ -31,4 +31,19 @@ class AutoController extends Controller
 
         return [ "msj" => "Auto código $idAuto eliminado."];
     }
+
+    public function Modificar(Request $request, $idAuto){
+        $auto = Auto::findOrFail($idAuto);
+        $auto -> marca        = $request -> post("marca");
+        $auto -> modelo       = $request -> post("modelo");
+        $auto -> color        = $request -> post("color");
+        $auto -> puertas      = $request -> post("puertas");
+        $auto -> cilindrado   = $request -> post("cilindrado");
+        $auto -> automatico   = $request -> post("automatico");
+        $auto -> electrico    = $request -> post("electrico");
+        
+        $auto -> save();
+        return $auto;
+
+    }
 }
