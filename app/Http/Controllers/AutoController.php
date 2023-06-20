@@ -24,4 +24,11 @@ class AutoController extends Controller
         $auto -> save();
         return $auto;
     }
+
+    public function Eliminar(Request $request, $idAuto){
+        $auto = Auto::findOrFail($idAuto);
+        $auto -> delete();
+
+        return [ "msj" => "Auto código $idAuto eliminado."];
+    }
 }
